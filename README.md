@@ -1,1 +1,1 @@
-# leaderboardsomnia
+# SomniaLeaderboards
