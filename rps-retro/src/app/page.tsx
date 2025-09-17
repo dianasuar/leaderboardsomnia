@@ -91,9 +91,6 @@ export default function PlayPage() {
     
     if (startGameBtn) {
       if (points >= 1000) {
-        startGameBtn.classList.remove('btn-disabled');
-        (startGameBtn as HTMLButtonElement).disabled = true;
-        
         // For unstake button, check both points AND games played
         if (unstakeBtn) {
           if (gameState.gamesPlayed >= gameState.gamesRequiredToUnstake) {
@@ -114,8 +111,6 @@ export default function PlayPage() {
           `;
         }
       } else {
-        startGameBtn.classList.add('btn-disabled');
-        (startGameBtn as HTMLButtonElement).disabled = true;
         
         // Disable unstake button if points are < 1000
         if (unstakeBtn) {
@@ -577,7 +572,6 @@ try {
         (stakeBtn as HTMLButtonElement).disabled = false;
       }
       
-      
       // Close modal after delay
       setTimeout(() => {
         const stakeModal = document.getElementById('stake-modal');
@@ -805,17 +799,6 @@ try {
       });
     }
     
-// Start game button
-const startGameBtn = document.getElementById('start-game-btn');
-
-if (startGameBtn) {
-  startGameBtn.addEventListener('click', function () {
-    const url = process.env.NEXT_PUBLIC_GAME_URL || 'https://xyz.com';
-    window.location.href = url; // same tab
-    // agar new tab chahiye ho:
-    // window.open(url, '_blank', 'noopener,noreferrer');
-  });
-}
     
     // Play game button
     const playGameBtn = document.getElementById('play-game-btn');
@@ -1009,9 +992,19 @@ if (startGameBtn) {
         <button id="stake-btn" className="neon-btn">
           GET PFPs
         </button>
-<button id="start-game-btn" className="neon-btn">
+<button
+  id="start-game-btn"
+  className="neon-btn"
+  onClick={() => {
+    const url = process.env.NEXT_PUBLIC_GAME_URL || 'https://xyz.com';
+    window.location.href = url;  // redirect same tab
+    // or new tab:
+    // window.open(url, '_blank', 'noopener,noreferrer');
+  }}
+>
   START GAME
 </button>
+
         <button
           id="scores-btn"
           className="neon-btn"
@@ -1524,10 +1517,6 @@ if (startGameBtn) {
           0% { opacity: 0.7; }
           100% { opacity: 1; }
         }
-
-
-
-
 
       `}</style>
       <LeaderboardModal open={leaderOpen} onClose={() => setLeaderOpen(false)} />
