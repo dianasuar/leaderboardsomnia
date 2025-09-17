@@ -426,7 +426,7 @@ console.log("Stake transaction confirmed");
           
           // Update UI elements directly
           const startGameBtn = document.getElementById('start-game-btn');
-          if (startGameBtn && updatedPoints >= 1000) {
+          if (startGameBtn && updatedPoints >= 0) {
             startGameBtn.classList.remove('btn-disabled');
             (startGameBtn as HTMLButtonElement).disabled = false;
             startGameBtn.textContent = 'START GAME';
