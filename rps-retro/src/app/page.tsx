@@ -92,7 +92,7 @@ export default function PlayPage() {
     if (startGameBtn) {
       if (points >= 1000) {
         startGameBtn.classList.remove('btn-disabled');
-        (startGameBtn as HTMLButtonElement).disabled = false;
+        (startGameBtn as HTMLButtonElement).disabled = true;
         
         // For unstake button, check both points AND games played
         if (unstakeBtn) {
@@ -428,7 +428,7 @@ console.log("Stake transaction confirmed");
           const startGameBtn = document.getElementById('start-game-btn');
           if (startGameBtn && updatedPoints >= 0) {
             startGameBtn.classList.remove('btn-disabled');
-            (startGameBtn as HTMLButtonElement).disabled = false;
+            (startGameBtn as HTMLButtonElement).disabled = true;
             startGameBtn.textContent = 'START GAME';
           }
           
@@ -817,16 +817,17 @@ try {
       });
     }
     
-    // Start game button
-    const startGameBtn = document.getElementById('start-game-btn');
-    const gameScreen = document.getElementById('game-screen');
-    
-    if (startGameBtn) {
-      startGameBtn.addEventListener('click', function() {
-        // Navigate to /play route
-        window.location.href = 'xyz.com';
-      });
-    }
+// Start game button
+const startGameBtn = document.getElementById('start-game-btn');
+
+if (startGameBtn) {
+  startGameBtn.addEventListener('click', function () {
+    const url = process.env.NEXT_PUBLIC_GAME_URL || 'https://xyz.com';
+    window.location.href = url; // same tab
+    // agar new tab chahiye ho:
+    // window.open(url, '_blank', 'noopener,noreferrer');
+  });
+}
     
     // Play game button
     const playGameBtn = document.getElementById('play-game-btn');
