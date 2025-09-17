@@ -4,11 +4,16 @@ import { useAccount, usePublicClient, useWriteContract } from 'wagmi';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { formatEther, parseEther } from 'viem';
 import LeaderboardModal from "./components/LeaderboardModal";
+import PfpMintModal from './components/PfpMintModal';
+
 
 const TOKEN = (process.env.NEXT_PUBLIC_TOKEN_ADDRESS ?? '') as `0x${string}`;
 const STAKING = (process.env.NEXT_PUBLIC_STAKING_ADDRESS ?? '') as `0x${string}`;
 
 export default function PlayPage() {
+    // 👇 PFP mint modal ke liye state
+  const [pfpOpen, setPfpOpen] = useState(false);
+
   const { address, isConnected } = useAccount();
   const [Address, setAddress] = useState<string | undefined>(address);
     const [leaderOpen, setLeaderOpen] = useState(false);
@@ -989,9 +994,14 @@ try {
     // ✅ Connected → show action buttons only now
     return (
       <>
-        <button id="stake-btn" className="neon-btn">
-          GET PFPs
-        </button>
+<button
+  id="stake-btn"
+  className="neon-btn"
+  onClick={() => setPfpOpen(true)}
+>
+  MINT PFP
+</button>
+
 <button
   id="start-game-btn"
   className="neon-btn"
@@ -1520,6 +1530,20 @@ try {
 
       `}</style>
       <LeaderboardModal open={leaderOpen} onClose={() => setLeaderOpen(false)} />
+
+      <PfpMintModal
+        open={pfpOpen}
+        onClose={() => setPfpOpen(false)}
+        images={[
+          '/pfp/1.png',
+          '/pfp/2.png',
+          '/pfp/3.png',
+          '/pfp/4.png',
+        ]}
+      />
+
+
+
     </div>
   );
 }
