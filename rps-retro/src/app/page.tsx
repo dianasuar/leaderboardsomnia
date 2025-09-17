@@ -1020,9 +1020,9 @@ try {
         <button id="stake-btn" className="neon-btn">
           GET PFPs
         </button>
-        <button id="start-game-btn" className="neon-btn btn-disabled" disabled>
-          START GAME
-        </button>
+<button id="start-game-btn" className="neon-btn">
+  START GAME
+</button>
         <button
           id="scores-btn"
           className="neon-btn"
