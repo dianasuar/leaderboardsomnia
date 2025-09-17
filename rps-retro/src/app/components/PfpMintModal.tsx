@@ -3,6 +3,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import { useAccount, usePublicClient, useWriteContract } from 'wagmi';
+import { formatEther } from 'viem';
 
 const PFP_ADDR = (process.env.NEXT_PUBLIC_PFP_NFT_ADDRESS ?? '') as `0x${string}`;
 const PFP_PRICE_WEI = BigInt(process.env.NEXT_PUBLIC_PFP_PRICE_WEI ?? '0'); // in wei
@@ -95,7 +96,10 @@ export default function PfpMintModal({ open, onClose, images }: Props) {
 
         <div className="flex items-center justify-between mb-3 text-[#00ff00] text-xs">
           <span>Selected #{idx + 1}</span>
-          <span>Price: {PFP_PRICE_WEI.toString()} wei</span>
+          <span>
+  Price: {Number(formatEther(PFP_PRICE_WEI)).toLocaleString(undefined, { maximumFractionDigits: 6 })} STT
+</span>
+
         </div>
 
         <div className="flex gap-3">
