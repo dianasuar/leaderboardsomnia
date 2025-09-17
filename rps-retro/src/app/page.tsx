@@ -824,7 +824,7 @@ try {
     if (startGameBtn) {
       startGameBtn.addEventListener('click', function() {
         // Navigate to /play route
-        window.location.href = '/play';
+        window.location.href = 'xyz.com';
       });
     }
     
