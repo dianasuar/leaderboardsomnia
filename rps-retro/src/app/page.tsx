@@ -425,12 +425,6 @@ console.log("Stake transaction confirmed");
           }
           
           // Update UI elements directly
-          const startGameBtn = document.getElementById('start-game-btn');
-          if (startGameBtn && updatedPoints >= 0) {
-            startGameBtn.classList.remove('btn-disabled');
-            (startGameBtn as HTMLButtonElement).disabled = true;
-            startGameBtn.textContent = 'START GAME';
-          }
           
           // Update the info box
           const infoBox = document.getElementById('info-box-text');
