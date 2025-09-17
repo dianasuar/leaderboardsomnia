@@ -577,12 +577,6 @@ try {
         (stakeBtn as HTMLButtonElement).disabled = false;
       }
       
-      const startGameBtn = document.getElementById('start-game-btn');
-      if (startGameBtn) {
-        startGameBtn.classList.add('btn-disabled');
-        startGameBtn.textContent = 'START GAME';
-        (startGameBtn as HTMLButtonElement).disabled = true;
-      }
       
       // Close modal after delay
       setTimeout(() => {
